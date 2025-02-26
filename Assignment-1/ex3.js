@@ -4,10 +4,10 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-const correctNumber = 3;
+const correctNumber = Math.floor(Math.random() * 10) + 1;  
 let attempts = 3;
 
-function askQuestion() {
+function guessNumber() {
     rl.question(`Guess the number between 1 and 10. You have ${attempts} attempts left: `, (guess) => {
         const userGuess = parseInt(guess);
 
@@ -18,7 +18,7 @@ function askQuestion() {
             attempts--;
             if (attempts > 0) {
                 console.log(`Incorrect! You have ${attempts} attempts left.`);
-                askQuestion();  // Prompt again for another guess
+                guessNumber();  // Prompt again for another guess
             } else {
                 console.log("Sorry, you lose! The correct number was " + correctNumber);
                 rl.close();
@@ -27,4 +27,4 @@ function askQuestion() {
     });
 }
 
-askQuestion();  // Start the game
+guessNumber();  
