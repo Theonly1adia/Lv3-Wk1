@@ -32,15 +32,21 @@ console.log("Task does not exist. Please check index value.")
 
 export function viewTasks(tasks){
     const groupedTasks = _.groupBy(tasks, "done");
-    console.log (groupedTasks)
     console.log("\n\n\n Pending Tasks:");
-    (groupedTasks[false] || []). forEach((task, i) =>
-        console.log(`${i}. ${task.name}`)
-    );
+    if (groupedTasks[false]) {
+        groupedTasks[false].forEach((task, i) =>
+            console.log(`${i}. ${task.name}`)
+        );
+    } else {
+        console.log("No pending tasks.");
+    }
     
-
-    console.log("\n\n\n Done Tasks:");
-    (groupedTasks[true]  || []).forEach((task, i) =>
-        console.log(`${i}. ${task.name}`)
-    );
+    console.log("\n\n Completed Tasks")
+    if (groupedTasks[true]) {
+        groupedTasks[true].forEach((task, i) =>
+            console.log(`${i}. ${task.name}`)
+        );
+    } else {
+        console.log("No completed tasks.");
+    }
 }
